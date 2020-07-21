@@ -2,7 +2,7 @@ import sqlite3
 import socket
 import os
 
-HOST_IP = '127.0.0.1'
+HOST_IP = '140.124.182.48'
 PORT = 8000
 
 def check_database_exist(db_name):

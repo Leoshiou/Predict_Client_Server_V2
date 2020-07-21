@@ -1,6 +1,6 @@
 import socket
 
-HOST = '127.0.0.1'
+HOST = '140.124.182.48'
 PORT = 8001
 
 server = socket.socket(socket.AF_INET)

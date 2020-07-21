@@ -2,14 +2,14 @@ import socket
 import sqlite3
 import os
 
-HOST = '127.0.0.1'
-PORT = 8000
+CLIENT = '140.124.182.48'
+PORT = 8001
 
 def create_model_state_database(db_name):
     split_result = db_name.rsplit('.', 1)
     if ((len(split_result) == 2) and (split_result[1] == 'db')):
         print("Corrent")
-        os.remove(db_name)
+        #os.remove(db_name)
         connection = sqlite3.connect(db_name)
         cursor_object = connection.cursor()
         cursor_object.execute('''SELECT count(name) FROM sqlite_master WHERE type='table' AND name = 'model_states' ''')
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     database_name = 'model_state_database.db'
     create_model_state_database(database_name)
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((HOST, PORT))
+    server.bind((CLIENT, PORT))
     server.listen(10)
     while True:
         connection, address = server.accept()

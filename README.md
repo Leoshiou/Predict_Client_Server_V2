@@ -9,6 +9,10 @@ Server Model State Database Structure
 ```sql
 '''CREATE TABLE model_states(Insert_Time TIMESTAMP, Device_Index integer, Device_IP char(50), client_model_dir char(100), train_flag integer, PRIMARY KEY(Device_Index))'''
 ```
+## Server
+1. Connect model state database
+2. Select the earliest state which the Train_Flag is not 0
+
 
 ## socket_Server
 1. Create model state database
@@ -16,3 +20,11 @@ Server Model State Database Structure
 3. Stay listen
 4. Receive message and split by "_"
 5. Insert the message into database (Update the information of the existed device_id, when it's train_flag = 0)
+
+## Client
+Set DEVICE_ID, HOST_IP, MODEL_DIR, Train_Flag
+client_message = **DEVICE_ID**_**HOST_IP**_**MODEL_DIR**_**Train_Flag**
+
+## socket_Client
+1. Stay listen
+2. Download new model from Server

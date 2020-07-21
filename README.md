@@ -19,12 +19,18 @@ Server Model State Database Structure
 2. Create socket
 3. Stay listen
 4. Receive message and split by "_"
-5. Insert the message into database (Update the information of the existed device_id, when it's train_flag = 0)
+5. Insert the message into database (Update the information of the existed device_id, when it's **Train_Flag** = 0)
 
 ## Client
 Set DEVICE_ID, HOST_IP, MODEL_DIR, Train_Flag
-client_message = **DEVICE_ID**_**HOST_IP**_**MODEL_DIR**_**Train_Flag**
+client_message = **DEVICE_ID**___**HOST_IP**___**MODEL_DIR**___**Train_Flag**
 
 ## socket_Client
 1. Stay listen
 2. Download new model from Server
+
+## Operate Flow (Simulation)
+1. Start **socket_Server**
+2. Start **Server**
+3. Start **socket_Client**
+4. Send model state information through **Client**

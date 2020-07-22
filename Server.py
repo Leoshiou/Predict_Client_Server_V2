@@ -2,8 +2,8 @@ import sqlite3
 import socket
 import os
 
-HOST_IP = '140.124.182.48'
-PORT = 8000
+CLIENT_IP = '140.124.182.40'
+PORT = 8001
 
 def check_database_exist(db_name):
     split_result = db_name.rsplit('.', 1)
@@ -35,9 +35,9 @@ if __name__ == '__main__':
                 open(str(rows[0][1]) + ".txt", "w")
                 cursor_object.execute('''UPDATE model_states SET Insert_Time = CURRENT_TIMESTAMP, Device_IP = ?, client_model_dir = ?, train_flag = ? WHERE Device_Index = ?''', (rows[0][2], rows[0][3], 0, rows[0][1]))
                 connection.commit()
-                server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                server.connect((HOST_IP, PORT))
+                server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                server_socket.connect((CLIENT_IP, PORT))
                 server_message = "Please Download New Model"
-                server.sendall(server_message.encode())
-                server.close()
+                server_socket.sendall(server_message.encode())
+                server_socket.close()
     connection.close()

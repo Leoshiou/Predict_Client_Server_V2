@@ -31,6 +31,6 @@ client_message = **DEVICE_ID**___**HOST_IP**___**MODEL_DIR**___**Train_Flag**
 
 ## Operate Flow (Simulation)
 1. Start **socket_Server**
-2. Start **Server**
-3. Start **socket_Client**
+2. Start **socket_Client**
+3. Start **Server**
 4. Send model state information through **Client**

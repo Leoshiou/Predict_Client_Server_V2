@@ -2,8 +2,8 @@ import socket
 import sqlite3
 import os
 
-CLIENT = '140.124.182.48'
-PORT = 8001
+SERVER_IP = '140.124.182.48'
+PORT = 8000
 
 def create_model_state_database(db_name):
     split_result = db_name.rsplit('.', 1)
@@ -28,13 +28,13 @@ def create_model_state_database(db_name):
 if __name__ == '__main__':
     database_name = 'model_state_database.db'
     create_model_state_database(database_name)
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((CLIENT, PORT))
-    server.listen(10)
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((SERVER_IP, PORT))
+    server_socket.listen(10)
     while True:
-        connection, address = server.accept()
-        client_message = str(connection.recv(4096), encoding='utf-8')
-        print("Client message is : ", client_message)
+        connection, address = server_socket.accept()
+        message_from_client = str(connection.recv(4096), encoding='utf-8')
+        print("Client message is : ", message_from_client)
         message_split = client_message.split("_")
         connection = sqlite3.connect(database_name)
         cursor_object = connection.cursor()

@@ -1,12 +1,12 @@
 import socket
 
-HOST = '140.124.182.48'
+CLIENT_IP = '140.124.182.40'
 PORT = 8001
 
-server = socket.socket(socket.AF_INET)
-server.bind((HOST, PORT))
-server.listen(10)
+client_socket = socket.socket(socket.AF_INET)
+client_socket.bind((CLIENT_IP, PORT))
+client_socket.listen(10)
 while True:
-    connection, address = server.accept()
-    client_message = str(connection.recv(4096), encoding='utf-8')
-    print("Client message is : ", client_message)
+    connection, address = client_socket.accept()
+    message_from_server = str(connection.recv(4096), encoding='utf-8')
+    print("Server message is : ", v)
